@@ -18,7 +18,6 @@ function AgendarStackScreen() {
   return (
     <AgendarStack.Navigator
       screenOptions={{
-        headerShown: false,
         headerStyle: {
           backgroundColor: 'transparent',
           elevation: 0,
