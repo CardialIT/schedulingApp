@@ -5,11 +5,12 @@ import {
     StyleSheet,
     Image,
     SafeAreaView
-} from 'react-native'
+} from 'react-native';
 import React from 'react';
-
+import { useNavigation } from '@react-navigation/native';
 
 const Agendar = () => {
+    const navigation = useNavigation();
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
@@ -50,8 +51,13 @@ const Agendar = () => {
                             Disponível para agendamento
                         </Text>
                     </View>
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Agendar</Text>
+                    <TouchableOpacity
+                        style={styles.button}
+                    >
+                        <Text
+                            style={styles.buttonText}
+                            onPress={() => navigation.navigate("Checkout")}
+                            >Agendar</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.backgroundContainer}>
@@ -84,9 +90,7 @@ const Agendar = () => {
                     </TouchableOpacity>
                 </View>
             </View>
-            
         </SafeAreaView>
-
     )
 }
 
@@ -101,11 +105,13 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 50
+        marginBottom: 50,
+        paddingVertical: 10,
+        paddingHorizontal: 4
     },
 
     button: {
-        backgroundColor: '#EAEAEA',
+        backgroundColor: '#E1F1FF',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 28,

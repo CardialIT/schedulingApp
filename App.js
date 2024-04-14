@@ -10,6 +10,8 @@ import Profile from './src/BottomTab/Profile';
 import Home from './src/BottomTab/Home';
 import Agendar from './src/BottomTab/Agendar';
 
+import Checkout from './src/AgendarStack/Checkout';
+
 const AgendarStack = createStackNavigator();
 
 function AgendarStackScreen() {
@@ -28,6 +30,12 @@ function AgendarStackScreen() {
         name="AgendarScreen"
         component={Agendar}
       />
+      <AgendarStack.Screen
+        name="Checkout"
+        component={Checkout}
+      />
+
+
     </AgendarStack.Navigator>
   )
 }
@@ -70,11 +78,11 @@ function HomeTabsScreen() {
             case "Home":
               iconName = focused ? "home" : "home-outline";
               break;
-            case "Perfil":
-              iconName = focused ? "person-circle" : "person-circle-outline";
-              break;
             case "Agendar":
               iconName = focused ? "calendar" : "calendar-outline";
+              break;
+            case "Perfil":
+              iconName = focused ? "person-circle" : "person-circle-outline";
               break;
             default:
               break;
@@ -85,12 +93,6 @@ function HomeTabsScreen() {
         tabBarInactiveTintColor: '#B9B4C7',
       })}
     >
-
-      <Tab.Screen
-        name="Perfil"
-        component={ProfileStackScreen}
-      />
-
       <Tab.Screen
         name="Home"
         component={HomeStackScreen}
@@ -99,6 +101,11 @@ function HomeTabsScreen() {
       <Tab.Screen
         name="Agendar"
         component={AgendarStackScreen}
+      />
+
+      <Tab.Screen
+        name="Perfil"
+        component={ProfileStackScreen}
       />
 
     </Tab.Navigator >
