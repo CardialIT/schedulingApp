@@ -1,21 +1,27 @@
 import { View, Text } from "react-native";
 import React from "react";
+import profileImage from "../assets/thalis.png";
+import barberImage from "../assets/barberImage.png";
+import barberImage1 from "../assets/barberImage1.png";
+import lineImage from "../assets/line.png";
+import clockImage from "../assets/clock.png";
+import calendarImage from "../assets/calendar.png";
 
 const Home = () => {
-  const [barbeiros, setBarbeiros] = useState([]);
+  const [barberName, setbarberName] = useState([]);
   useEffect(() => {
     // Função para buscar os barbeiros do backend
-    const fetchBarbeiros = async () => {
+    const fetchBarberName = async () => {
       try {
-        const response = await fetch("URL_DO_BACKEND/barbeiros");
+        const response = await fetch("URL_DO_BACKEND/barberName");
         const jsonData = await response.json();
-        setBarbeiros(jsonData);
+        setBarberName(jsonData);
       } catch (error) {
         console.error("Erro ao buscar dados dos barbeiros do backend:", error);
       }
     };
 
-    fetchBarbeiros();
+    fetchBarberName();
   }, []);
   return (
     <View>
@@ -23,14 +29,6 @@ const Home = () => {
     </View>
   );
 };
-import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import profileImage from "../assets/thalis.png";
-import barberImage from "../assets/barberImage.png";
-import barberImage1 from "../assets/barberImage1.png";
-import lineImage from "../assets/line.png";
-import clockImage from "../assets/clock.png";
-import calendarImage from "../assets/calendar.png";
 
 const Appointment = ({
   barberName,
