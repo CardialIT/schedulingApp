@@ -1,11 +1,11 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
-import profileImage from "../assets/thalis.png";
-import barberImage from "../assets/barberImage.png";
-import barberImage1 from "../assets/barberImage1.png";
-import lineImage from "../assets/line.png";
-import clockImage from "../assets/clock.png";
-import calendarImage from "../assets/calendar.png";
+import profileImage from "../../assets/thalis.png";
+import barberImage from "../../assets/barberImage.png";
+import barberImage1 from "../../assets/barberImage1.png";
+import lineImage from "../../assets/line.png";
+///import clockImage from "../../assets/clock.png";
+import calendarImage from "../../assets/calendar.png";
 
 const Home = () => {
   const [barberName, setbarberName] = useState([]);
