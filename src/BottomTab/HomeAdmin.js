@@ -1,17 +1,18 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import profileImage from "../assets/thalis.png";
-import clientImage from "../assets/clientImage.png";
-import clientImage1 from "../assets/clientImage1.png";
-import barberImage1 from "../assets/barberImage1.png";
-import clockImage from "../assets/clock.png";
-import calendarImage from "../assets/calendar.png";
+import profileImage from "../../assets/gilberto.png";
+import clientImage from "../../assets/thalis.png";
+import clientImage1 from "../../assets/mayor.png";
+import clientImage2 from "../../assets/clientImage1.png";
+//import clockImage from "../../assets/clock.png";
+import calendarImage from "../../assets/calendar.png";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Appointment = ({
   clientName,
   service,
   date,
-  realizationt,
+  realization,
   clientImage,
 }) => {
   return (
@@ -21,13 +22,13 @@ const Appointment = ({
           <Image style={styles.clientImageImage} source={clientImage} />
         </View>
         <View style={styles.appointmentContent}>
-          <Text style={styles.barberName}>{clientNameName}</Text>
+          <Text style={styles.barberName}>{clientName}</Text>
           <Text style={styles.serviceType}>{service}</Text>
           <Text style={styles.date}>{date}</Text>
         </View>
       </View>
       <View>
-        <Text style={styles.realizationt}>{realizationt}</Text>
+        <Text style={styles.realization}>{realization}</Text>
       </View>
     </View>
   );
@@ -43,53 +44,111 @@ const HomeAdmin = () => {
         </View>
       </View>
 
-      <View style={styles.bubble}>
-        <View
-          style={{
-            marginBottom: 32,
-            marginHorizontal: 20,
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <View style={styles.service}>
-            <View>
-              <Image style={styles.clientImage} source={clientImageImage} />
+      <ScrollView>
+        <View style={styles.bubble}>
+          <View
+            style={{
+              marginBottom: 32,
+              marginHorizontal: 20,
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <View style={styles.service}>
+              <View>
+                <Image style={styles.clientImage} source={clientImage} />
+              </View>
+              <View style={styles.bubbleContent}>
+                <Text style={styles.clientName}>Thalis Antunes</Text>
+                <Text style={styles.serviceType1}>Baby liss</Text>
+              </View>
             </View>
-            <View style={styles.bubbleContent}>
-              <Text style={styles.clientImage}>Thalis Antunes</Text>
-              <Text style={styles.serviceType1}>Corte degradê</Text>
+            <View style={{ marginLeft: "auto" }}>
+              <Text style={{ fontSize: 40, color: "white" }}>{">"}</Text>
             </View>
           </View>
-          <View style={{ marginLeft: "auto" }}>
-            <Text style={{ fontSize: 40, color: "white" }}>{">"}</Text>
-          </View>
-        </View>
-        <View style={{ padding: 20 }}></View>
-        <View
-          style={{
-            marginHorizontal: 20,
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <Image style={styles.calendarImage} source={calendarImage} />
-          <Text style={styles.date1}>Segunda, 12 Junho 11:00 - 12:00 AM</Text>
-        </View>
-      </View>
 
-      <Appointment
-        clientName="Matheus Mayor"
-        service="Sobrancelha"
-        realizationt="Segunda, 12 Junho as 11:00"
-        //clientImage={barberImage1}
-      />
-      <Appointment
-        barberName="Stefano Luis"
-        service="Barba e cabelo"
-        barberImage={barberImage}
-        realizationt="Segunda, 20 Junho as 17:00"
-      />
+          <View
+            style={{
+              marginHorizontal: 20,
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Image style={styles.calendarImage} source={calendarImage} />
+            <Text style={styles.date1}>Segunda, 12 Junho 11:00 - 12:00 AM</Text>
+          </View>
+        </View>
+        <View style={styles.bubble}>
+          <View
+            style={{
+              marginBottom: 32,
+              marginHorizontal: 20,
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <View style={styles.service}>
+              <View>
+                <Image style={styles.clientImage} source={clientImage1} />
+              </View>
+              <View style={styles.bubbleContent}>
+                <Text style={styles.clientName}>Matheus Mayor</Text>
+                <Text style={styles.serviceType1}>Sombracelha</Text>
+              </View>
+            </View>
+            <View style={{ marginLeft: "auto" }}>
+              <Text style={{ fontSize: 40, color: "white" }}>{">"}</Text>
+            </View>
+          </View>
+
+          <View
+            style={{
+              marginHorizontal: 20,
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Image style={styles.calendarImage} source={calendarImage} />
+            <Text style={styles.date1}>Segunda, 12 Junho 11:00 - 12:00 AM</Text>
+          </View>
+        </View>
+
+        <View style={styles.bubble}>
+          <View
+            style={{
+              marginBottom: 32,
+              marginHorizontal: 20,
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <View style={styles.service}>
+              <View>
+                <Image style={styles.clientImage} source={clientImage2} />
+              </View>
+              <View style={styles.bubbleContent}>
+                <Text style={styles.clientName}>Stéfano Luis</Text>
+                <Text style={styles.serviceType1}>Barba e cabelo</Text>
+              </View>
+            </View>
+            <View style={{ marginLeft: "auto" }}>
+              <Text style={{ fontSize: 40, color: "white" }}>{">"}</Text>
+            </View>
+          </View>
+
+          <View
+            style={{
+              marginHorizontal: 20,
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Image style={styles.calendarImage} source={calendarImage} />
+            <Text style={styles.date1}>Segunda, 12 Junho 11:00 - 12:00 AM</Text>
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -123,17 +182,15 @@ const styles = StyleSheet.create({
   service: {
     flexDirection: "row",
   },
+
   bubble: {
     marginBottom: 32,
-    flexDirection: "colunm",
+    flexDirection: "column",
     backgroundColor: "#FF27A2",
     borderRadius: 30,
     padding: 20,
     justifyContent: "flex-start",
-    marginLeft: 28,
-  },
-  appointmentContainer: {
-    marginLeft: 28,
+    marginHorizontal: 24,
   },
   bubble1: {
     flexDirection: "column",
@@ -144,26 +201,26 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     marginBottom: 20,
   },
-
   barberImageContainer: {
     marginRight: 10,
   },
-  barberImage1: {
+  clientImage: {
     width: 48,
     height: 48,
+    marginRight: 12,
   },
-  realizedText: {
+  realization: {
     marginTop: 40,
     color: "#DD3E7B",
     alignItems: "baseline",
   },
   barberName: {
-    color: "#00000",
+    color: "#000000",
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 8,
   },
-  barberName1: {
+  clientName: {
     color: "#FFFFFF",
     fontSize: 20,
     fontWeight: "bold",
@@ -189,7 +246,7 @@ const styles = StyleSheet.create({
     height: 2,
     paddingHorizontal: 20,
     paddingHorizontal: 16,
-    backgroundolor: "Black",
+    backgroundColor: "black",
   },
   date: {
     fontSize: 16,
@@ -227,12 +284,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#007AFF",
   },
-  barberImage: {
-    width: 48,
-    height: 48,
-    borderRadius: 30,
-    marginRight: 10,
-  },
 });
-
 export default HomeAdmin;
