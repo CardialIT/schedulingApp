@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import icon from '../../assets/icone.png'; 
+import styles from './styles';
 
 const Checkout = () => {
   const navigation = useNavigation()
@@ -18,7 +20,7 @@ const Checkout = () => {
   const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
   // Array com todos os dias do mês selecionado
-    const getDaysInMonth = () => {
+  const getDaysInMonth = () => {
     const year = new Date().getFullYear();
     const month = currentMonthIndex + 1; // Adiciona 1 pois o mês começa do zero
     const daysInMonth = new Date(year, month, 0).getDate();
@@ -40,18 +42,18 @@ const Checkout = () => {
   const renderDateItem = ({ item }) => {
     return (
       <TouchableOpacity onPress={() => setSelectedDate(item.date)}>
-        <View style={{ width: 63, height: 72,backgroundColor:  'white', padding: 10, borderRadius: 10, margin: 5, borderWidth: 1.5, borderColor: selectedDate === item.date ? '#FF27A2':'#7A7A7A' }}>
-          <Text style={{fontWeight: 'bold', textAlign: 'center', fontSize: 18,color: selectedDate === item.date ? '#FF27A2':'#7A7A7A'}}>{item.date}</Text>
-          <Text style={{fontWeight: 'bold', textAlign: 'center', fontSize: 15,marginTop:10,color: selectedDate === item.date ? '#FF27A2':'#7A7A7A', marginTop: selectedDate === item.date ? 4:15,}}>{item.dayOfWeek}</Text>
+        <View style={styles.dateItemContainer}>
+          <Text style={styles.dateText}>{item.date}</Text>
+          <Text style={[styles.dayOfWeekText, { marginTop: selectedDate === item.date ? 4 : 15 }]}>{item.dayOfWeek}</Text>
         </View>
       </TouchableOpacity>
     );
   };
 
   const renderTimeItem = ({ item }) => (
-    <TouchableOpacity  onPress={() => setSelectedTime(item.time)}>
-      <View style={{ paddingHorizontal:42,paddingTop:13,backgroundColor:'white', padding: 10, borderRadius: 10, margin: 5, borderWidth: 1.5, borderColor: selectedTime === item.time ? '#FF27A2':'#7A7A7A' }}>
-        <Text style={{fontWeight: 'bold', fontSize: 18,color: selectedTime === item.time ? '#FF27A2':'#7A7A7A' }}>{item.time}</Text>
+    <TouchableOpacity onPress={() => setSelectedTime(item.time)}>
+      <View style={[styles.timeItemContainer, { borderColor: selectedTime === item.time ? '#FF27A2' : '#7A7A7A' }]}>
+        <Text style={[styles.timeText, { color: selectedTime === item.time ? '#FF27A2' : '#7A7A7A' }]}>{item.time}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -65,79 +67,80 @@ const Checkout = () => {
   };
 
   return (
-    <View style={{ flex: 1 ,backgroundColor:'#FFFFFF'}}>
+    <View style={styles.container}>
       {/* Foto, nome e profissão */}
-    
-      <View style={{ alignItems: 'center', marginTop: 30 }}>
+      <View style={styles.profileContainer}>
         <Image
-          source={require('../../assets/icone.png')}
-          style={{ width: 98, height: 98, borderRadius: 100, marginBottom: 10 }}
+          source={icon} // Usar a imagem importada aqui
+          style={styles.profileImage}
         />
-        <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 1 }}>Fernando Andrade</Text>
-        <Text style={{ fontSize: 14,fontWeight: '30',color:'#7A7A7A' }}>Barbeiro</Text>
+        <Text style={styles.nameText}>Fernando Andrade</Text>
+        <Text style={styles.professionText}>Barbeiro</Text>
       </View>
-      <View style={{ width: '98%', borderBottomWidth: 1, borderBottomColor: '#7A7A7A', marginHorizontal: 5, marginTop: 25,opacity:"10%" }} />
+      <View style={styles.divider} />
 
       {/* Seleção do Dia */}
-      <View style={{ alignItems: 'center', marginHorizontal: 10 }}>
-        <Text style={{ fontSize: 24, fontWeight: '400', marginTop: 10, fontWeight: 'bold' }}>Selecionar o dia e hora</Text>
-      </View>
+      <ScrollView>
+        <View style={styles.selectionTitleContainer}>
+          <Text style={styles.selectionTitleText}>Selecionar o dia e hora</Text>
+        </View>
 
-      {/* Navegação de mês e seleção do dia */}
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingHorizontal: 10, marginBottom: 10, marginTop: 34, }}>
-        <TouchableOpacity onPress={() => changeMonth('previous')}>
-          <Text style={{ fontSize: 20, color: '#000000', marginRight: 20 }}>{'<'}</Text>
-        </TouchableOpacity>
-        <Text style={{ fontSize: 16 }}>{months[currentMonthIndex]}</Text>
-        <TouchableOpacity onPress={() => changeMonth('next')}>
-          <Text style={{ fontSize: 20, color: '#000000', marginLeft: 20 }}>{'>'}</Text>
-        </TouchableOpacity>
-      </View>
+        {/* Navegação de mês e seleção do dia */}
+        <View style={styles.monthNavigationContainer}>
+          <TouchableOpacity onPress={() => changeMonth('previous')}>
+            <Text style={styles.navigationText}>{'<'}</Text>
+          </TouchableOpacity>
+          <Text style={styles.monthText}>{months[currentMonthIndex]}</Text>
+          <TouchableOpacity onPress={() => changeMonth('next')}>
+            <Text style={styles.navigationText}>{'>'}</Text>
+          </TouchableOpacity>
+        </View>
 
-      {/* Data */}
-      <View style={{marginLeft:20}}>
-        <FlatList
-          horizontal
-          data={dates}
-          renderItem={renderDateItem}
-          keyExtractor={(item) => item.id}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
-
-      {/* Hora (mostrado após selecionar a data) */}
-      {selectedDate !== '' && (
-        <View style={{ marginTop: 20,paddingLeft:20,paddingRight:20 }}>
-          <View style={{ alignItems: 'flex-start', margin: 10 }}>
-            <Text style={{ fontWeight: 'bold',fontSize: 24,}}>
-              Horários disponíveis
-            </Text>
-          </View>
+        {/* Data */}
+        <View style={styles.datesContainer}>
           <FlatList
             horizontal
-            data={times}
-            renderItem={renderTimeItem}
+            data={dates}
+            renderItem={renderDateItem}
             keyExtractor={(item) => item.id}
             showsHorizontalScrollIndicator={false}
           />
         </View>
-      )}
 
-      {/* Botão de agendar */}
-      {selectedTime !== '' && (
-        <TouchableOpacity
-          style={{ alignItems: 'center', marginTop: 34 }}
-          onPress={() => {
-            // Implemente a lógica para agendar aqui
-          }}
-        >
-          <View style={{ backgroundColor: '#DD3E7B', paddingVertical: 20, paddingHorizontal: 130, borderRadius: 15 }}>
-            <Text style={{fontSize: 20, color: 'white' }}>Marcar</Text>
+        {/* Hora (mostrado após selecionar a data) */}
+        {selectedDate !== '' && (
+          <View style={styles.timesContainer}>
+            <View style={styles.timesTitleContainer}>
+              <Text style={styles.timesTitleText}>Horários disponíveis</Text>
+            </View>
+            <FlatList
+              horizontal
+              data={times}
+              renderItem={renderTimeItem}
+              keyExtractor={(item) => item.id}
+              showsHorizontalScrollIndicator={false}
+            />
           </View>
-        </TouchableOpacity>
-      )}
+        )}
+
+        {/* Botão de agendar */}
+        {selectedTime !== '' && (
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => {
+              // Implemente a lógica para agendar aqui
+            }}
+          >
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Marcar</Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      </ScrollView>
     </View>
   );
 };
+
+
 
 export default Checkout;
