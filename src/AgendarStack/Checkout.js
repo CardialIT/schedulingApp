@@ -42,9 +42,9 @@ const Checkout = () => {
   const renderDateItem = ({ item }) => {
     return (
       <TouchableOpacity onPress={() => setSelectedDate(item.date)}>
-        <View style={styles.dateItemContainer}>
-          <Text style={styles.dateText}>{item.date}</Text>
-          <Text style={[styles.dayOfWeekText, { marginTop: selectedDate === item.date ? 4 : 15 }]}>{item.dayOfWeek}</Text>
+        <View style={[styles.dateItemContainer,{ borderColor: selectedDate === item.date ? '#FF27A2' : '#7A7A7A'}]}>
+          <Text style={[styles.dateText,{ color: selectedDate === item.date ? '#FF27A2' : '#7A7A7A' }]}>{item.date}</Text>
+          <Text style={[styles.dayOfWeekText, { marginTop: selectedDate === item.date ? 4 : 15 },{ color: selectedDate === item.date ? '#FF27A2' : '#7A7A7A' }]}>{item.dayOfWeek}</Text>
         </View>
       </TouchableOpacity>
     );
