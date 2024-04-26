@@ -123,6 +123,6 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
-//ola
+//ola.
 
 export default styles;
