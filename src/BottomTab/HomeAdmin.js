@@ -4,6 +4,7 @@ import profileImage from "../../assets/gilberto.png";
 import clientImage from "../../assets/thalis.png";
 import clientImage1 from "../../assets/mayor.png";
 import clientImage2 from "../../assets/clientImage1.png";
+import seta from "../../assets/seta.png";
 //import clockImage from "../../assets/clock.png";
 import calendarImage from "../../assets/calendar.png";
 import { ScrollView } from "react-native-gesture-handler";
@@ -64,7 +65,7 @@ const HomeAdmin = () => {
               </View>
             </View>
             <View style={{ marginLeft: "auto" }}>
-              <Text style={{ fontSize: 40, color: "white" }}>{">"}</Text>
+              <Image style={styles.profileImage} source={profileImage} />
             </View>
           </View>
 
