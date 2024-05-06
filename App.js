@@ -6,9 +6,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
 
-import Profile from './src/BottomTab/Profile';
-import Home from './src/BottomTab/Home';
-import Agendar from './src/BottomTab/Agendar';
+import Profile from './src/BottomTab/Profile/Profile';
+import Home from './src/BottomTab/Home/Home';
+import Agendar from './src/BottomTab/Agendar/Agendar';
 
 import Checkout from './src/AgendarStack/Checkout';
 
